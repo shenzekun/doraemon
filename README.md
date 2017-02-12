@@ -1,236 +1,41 @@
 # doraemon
 
-> 最近在学canvas元素，于是用canvas画了一个哆啦A梦来增强对canvas元素的理解。
+> 最近在学canvas元素,`<canvas>`标签只是图形容器，必须使用js来绘制图形。为了增强对canvas元素的理解,于是用canvas画了一个哆啦A梦来
 
-###小项目简介 
+## 小项目简介 
 
----
 使用`canvas`画哆啦A梦
 
-###效果图如下
----
+## 效果图如下
+
  ![](https://github.com/726664809/doraemon/raw/master/img/Doraemon.png)
  
-###代码
+## 详细元素简介
+- [arcTo()](http://www.365mini.com/page/html5-canvas-arcto.htm)
+- [canvas绘制圆形或弧线](http://www.365mini.com/page/html5-canvas-circle.htm)
+- [bezierCurveTo()](http://www.w3school.com.cn/tags/canvas_beziercurveto.asp)
+- [quadraticCurveTo() ](http://www.w3school.com.cn/tags/canvas_quadraticcurveto.asp)
 
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>哆啦A梦</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        #doraemon {
-            background-color: #fff;
-            display: block;
-        }
-    </style>
-</head>
-<body onmousemove="zuobiao(event)">
-<canvas id="doraemon" width="400" height="600"></canvas>
-<div id="put" style="width: 50px" height="20px"></div>
-<script>
-    window.onload = function () {
-        var cxt = document.getElementById('doraemon').getContext('2d');
-        /* 头部*/
-        cxt.beginPath();//起始路径
-        cxt.lineWidth = 1;//线宽度为1
-        cxt.strokeStyle = '#000';//笔触的颜色
-        cxt.arc(200, 175, 175, 0.7 * Math.PI, 0.3 * Math.PI);//绘制弧，中心点（200，175），半径175
-        cxt.fillStyle = '#0bb0da';//设置填充时的颜色
-        cxt.fill();//填充颜色
-        cxt.stroke();//绘制路径
+## 详细代码实现
 
-        /*脸部*/
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.moveTo(110, 110);//将路径移到点（110，110），不创建线条
-        cxt.quadraticCurveTo(-10, 200, 120, 315);//创建二次贝塞尔曲线,控制点(-10,200),结束点(120,315)
-        cxt.lineTo(280, 315);//添加一个新点，然后在画布中创建从（110，110）到（280，315）的线条
-        cxt.quadraticCurveTo(410, 210, 290, 110);
-        cxt.lineTo(110, 110);
-        cxt.fill();
-        cxt.stroke();
-
-        /*眼睛*/
-        cxt.beginPath();
-        cxt.lineWidth = 1;
-        cxt.fillStyle = '#fff';
-        cxt.moveTo(110, 110);
-        cxt.bezierCurveTo(110, 25, 200, 25, 200, 100);//创建三次贝塞尔曲线,控制点1(110,25),控制点2(200,25),结束点(200,100)，也就是画左上半椭圆
-        cxt.bezierCurveTo(200, 175, 110, 175, 110, 100);//画左下半椭圆
-        cxt.moveTo(200, 100);
-        cxt.bezierCurveTo(200, 25, 290, 25, 290, 100);
-        cxt.bezierCurveTo(290, 175, 200, 175, 200, 100);
-        cxt.fill();
-        cxt.stroke();
+[哆啦A梦](https://github.com/726664809/doraemon/blob/master/Doraemon.html)
 
 
-        /*右眼球*/
-        cxt.beginPath();
-        cxt.fillStyle = '#000';
-        cxt.arc(230, 130, 12, 0, 2 * Math.PI);
-        cxt.fill();
-        cxt.stroke();
 
-        /*左眼球*/
-        cxt.beginPath();
-        cxt.fillStyle = '#000';
-        cxt.arc(170, 130, 12, 0, 2 * Math.PI);
-        cxt.fill();
-        cxt.stroke();
+ 
+ 
+ 
+ 
+  
+ 
+ 
 
-        /* 鼻子*/
-        cxt.beginPath();
-        cxt.arc(200, 165, 25, 0, 2 * Math.PI);
-        cxt.fillStyle = '#d05823';
-        cxt.fill();
-        cxt.stroke();
-
-        /*胡须*/
-        //左胡须
-        cxt.beginPath();
-        cxt.moveTo(80, 175);
-        cxt.lineTo(150, 195);
-        cxt.moveTo(80, 200);
-        cxt.lineTo(150, 205);
-        cxt.moveTo(80, 225);
-        cxt.lineTo(150, 215);
-
-        //中部胡须
-        cxt.moveTo(200, 195);
-        cxt.lineTo(200, 290);
-        //右胡须
-        cxt.moveTo(250, 195);
-        cxt.lineTo(320, 175);
-        cxt.moveTo(250, 205);
-        cxt.lineTo(320, 200);
-        cxt.moveTo(250, 215);
-        cxt.lineTo(320, 225);
-        cxt.stroke();
-
-        /*嘴*/
-        cxt.moveTo(80, 240);
-        cxt.quadraticCurveTo(200, 350, 320, 240);
-        cxt.stroke();
+  
+    
+    
+ 
 
 
-        /*围巾*/
-        cxt.beginPath();
-        cxt.moveTo(96, 316);
-        cxt.lineTo(305, 316);
-        cxt.lineTo(320, 316);
-        cxt.arcTo(330, 316, 330, 326, 10);//在画布上创建介于两个切线之间的弧，起点坐标为(330,316),终点坐标为(330,326),半径为10
-        cxt.lineTo(330, 336);
-        cxt.arcTo(330, 346, 305, 346, 10);
-        cxt.lineTo(81, 346);
-        cxt.arcTo(71, 346, 71, 336, 10);
-        cxt.lineTo(71, 326);
-        cxt.arcTo(71, 316, 81, 316, 10);
-        cxt.lineTo(96, 316);
-        cxt.fillStyle = '#b13209';
-        cxt.fill();
-        cxt.stroke();
-
-        /*下半身*/
-        cxt.beginPath();
-        cxt.fillStyle = '#0bb0da';
-        cxt.moveTo(80, 346);
-        //左衣服
-        cxt.lineTo(26, 406);
-        cxt.lineTo(65, 440);
-        cxt.lineTo(85, 418);
-        cxt.lineTo(85, 528);
-        cxt.lineTo(185, 528);
-        //右衣服
-        cxt.lineTo(315, 528);
-        cxt.lineTo(315, 418);
-        cxt.lineTo(337, 440);
-        cxt.lineTo(374, 406);
-        cxt.lineTo(320, 346);
-        cxt.fill();
-        cxt.stroke();
-
-        /*手*/
-        //左手
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.arc(37, 433, 30, 0, 2 * Math.PI);
-        cxt.fill();
-        cxt.stroke();
-        //右手
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.arc(363, 433, 30, 0, 2 * Math.PI);
-        cxt.fill();
-        cxt.stroke();
-
-        /*肚*/
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.arc(200, 400, 91, 1.8 * Math.PI, 1.2 * Math.PI);
-        cxt.fill();
-        cxt.stroke();
-        //小口袋
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.moveTo(130, 394);
-        cxt.lineTo(270, 394);
-        cxt.moveTo(130, 394);
-        cxt.bezierCurveTo(130, 490, 270, 490, 270, 394);
-        cxt.fill();
-        cxt.stroke();
-
-        /*两只脚的空隙*/
-        cxt.beginPath();
-        cxt.fillStyle = '#fff';
-        cxt.arc(200, 529, 20,Math.PI, 0);
-        cxt.fill();
-        cxt.stroke();
-
-        /*脚*/
-        //左脚
-        cxt.beginPath();
-        cxt.fillStyle='#fff';
-        cxt.moveTo(180,528);
-        cxt.lineTo(72,528);
-        cxt.bezierCurveTo(52,528,52,558,72,558);
-        cxt.lineTo(180,558);
-        cxt.moveTo(180,558);
-        cxt.bezierCurveTo(200,558,200,528,180,528);
-        cxt.fill();
-        cxt.stroke();
-
-        //右脚
-        cxt.beginPath();
-        cxt.fillStyle='#fff';
-        cxt.moveTo(220,528);
-        cxt.lineTo(328,528);
-        cxt.bezierCurveTo(348,528,348,558,328,558);
-        cxt.lineTo(220,558);
-        cxt.moveTo(220,558);
-        cxt.bezierCurveTo(200,558,200,528,220,528);
-        cxt.fill();
-        cxt.stroke();
-    };
-
-    //显示坐标
-    function zuobiao(event) {
-        var x = event.clientX;
-        var y = event.clientY;
-        var out = document.getElementById("put");
-        out.innerHTML = "x:" + x + " y:" + y;
-
-    }
-</script>
-</body>
-</html>
-
-```
 
 
 
