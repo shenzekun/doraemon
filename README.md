@@ -1,5 +1,6 @@
 # doraemon
 
+[![](https://badge.juejin.im/entry/590017521b69e60058b2cf95/likes.svg?style=flat)](https://juejin.im/entry/590017521b69e60058b2cf95/detail)
 > 最近在学canvas元素,`<canvas>`标签只是图形容器，必须使用js来绘制图形。为了增强对canvas元素的理解,于是用canvas画了一个哆啦A梦来
 
 ## 小项目简介 
